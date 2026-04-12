@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="appTitle">Deteksi Pelinggih Batukaru</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header dengan judul aplikasi -->
+    <header class="app-header">
+        <div class="header-content">
+            <div class="header-top">
+                <h1 class="app-title" data-i18n="appTitle">Deteksi Pelinggih Batukaru</h1>
+                <p class="app-subtitle" data-i18n="appSubtitle">Sistem Deteksi Pelinggih Berbasis Citra</p>
+            </div>
+            
+            <!-- Language Selector -->
+            <div class="language-selector">
+                <div class="language-current" id="current-language">
+                    <span class="language-flag"></span>
+                    <span class="language-text" data-i18n="currentLanguage">Indonesia</span>
+                    <span class="language-arrow">▼</span>
+                </div>
+                <div class="language-dropdown" id="language-dropdown">
+                    <div class="language-option" data-lang="id">
+                        <span class="language-flag"></span>
+                        <span class="language-text" data-i18n="indonesianText">Indonesia</span>
+                    </div>
+                    <div class="language-option" data-lang="en">
+                        <span class="language-flag"></span>
+                        <span class="language-text" data-i18n="englishText">English</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Bagian Input -->
+        <div class="input-section">
+            <h2 class="section-title" data-i18n="inputTitle">Input Gambar</h2>
+            
+            <div class="image-box">
+                <img id="preview-image" src="" alt="Preview">
+                <div class="image-placeholder">
+                    <span>📷</span>
+                    <p data-i18n="imagePlaceholder">Pilih gambar untuk memulai deteksi</p>
+                </div>
+            </div>
+
+            <div class="button-group">
+                <input type="file" id="camera-input" accept="image/*" capture="environment" hidden>
+                <input type="file" id="file-input" accept=".jpg,.jpeg,.png,.gif,.bmp,.webp" hidden>
+
+                <button class="btn btn-camera" id="camera-btn">
+                    <span class="btn-icon">📸</span>
+                    <span class="btn-text" data-i18n="cameraButton">Kamera</span>
+                </button>
+                <button class="btn btn-file" id="file-btn">
+                    <span class="btn-icon">🖼️</span>
+                    <span class="btn-text" data-i18n="fileButton">Gambar</span>
+                </button>
+            </div>
+            
+            <button id="process-btn" class="btn-primary" style="display: none;">
+                <span class="btn-icon">🔍</span>
+                <span class="btn-text" data-i18n="detectButton">Deteksi Sekarang</span>
+            </button>
+        </div>
+
+        <!-- Bagian Output (Awalnya disembunyikan) -->
+        <div class="output-section" id="output-container" style="display: none;">
+            <h2 class="section-title output-title" data-i18n="outputTitle">Output Deteksi</h2>
+            
+            <div class="result-container">
+                <div class="result-box">
+                    <div class="image-label" data-i18n="resultLabel">Hasil Deteksi:</div>
+                    <div class="result-content">
+                        <img id="result-image" src="" alt="Hasil Deteksi" class="clickable-image">
+                        <div class="loading-container" id="image-loading">
+                            <span class="loading"></span>
+                            <span class="loading-text" data-i18n="analyzingText">Sedang menganalisis gambar...</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="description-box">
+                    <div class="description-label" data-i18n="descriptionLabel">Keterangan:</div>
+                    <div class="description-content" id="result-text">
+                        <span data-i18n="descriptionPlaceholder">Hasil deskripsi akan muncul di sini setelah proses deteksi selesai.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Popup untuk Gambar -->
+    <div class="modal-overlay" id="image-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" data-i18n="modalTitle">Hasil Deteksi Detail</h3>
+                <button class="modal-close" id="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <img id="modal-image" src="" alt="Gambar Deteksi Detail">
+                <div class="modal-loading" id="modal-loading">
+                    <span class="loading"></span>
+                    <span data-i18n="loadingImage">Memuat gambar...</span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-modal" id="download-btn">
+                    <span class="btn-icon">⬇️</span>
+                    <span data-i18n="downloadButton">Unduh Gambar</span>
+                </button>
+                <button class="btn-modal btn-modal-secondary" id="close-modal-2">
+                    <span class="btn-icon">✕</span>
+                    <span data-i18n="closeButton">Tutup</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer di luar container agar selalu di bawah -->
+    <footer class="app-footer">
+        <span data-i18n="footerText">© 2026 Deteksi Pelinggih Batukaru | Data Primer Pura Luhur Batukaru</span>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
